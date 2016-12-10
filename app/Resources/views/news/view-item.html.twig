@@ -4,5 +4,7 @@
 
 {% block body %}
     <h1>{{ newsItem.title }}</h1>
-    <p>{{ newsItem.content }}</p>
+    <p>{{ newsItem.content | raw }}</p>
+    
+    <p><a href="{{ path('newsList') }}">Back to news</a></p>
 {% endblock %}

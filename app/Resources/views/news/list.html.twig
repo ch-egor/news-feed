@@ -4,8 +4,13 @@
 
 {% block body %}
     {% for newsItem in newsItems %}
-        <h1>{{ newsItem.title }}</h1>
-        <p>{{ newsItem.preview }}</p>
-        <p><a href="{{ path('viewNewsItem', { 'urlName': newsItem.urlName }) }}">Подробнее...</a></p>
+        <section class="news-item">
+            <h1>
+                <a href="{{ path('viewNewsItem', { 'urlName': newsItem.urlName }) }}">
+                    {{ newsItem.title }}
+                </a>
+            </h1>
+            <p>{{ newsItem.preview }}</p>
+        </section>
     {% endfor %}
 {% endblock %}
