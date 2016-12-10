@@ -6,18 +6,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class NewsController extends Controller
 {
+    /**
+     * @Route("/")
+     */
+    public function indexAction()
+    {
+        return $this->redirectToRoute('newsList');
+    }
+    
     /**
      * @Route("/feed/{page}", name="newsList")
      */
     public function listAction($page = 1)
     {
         if ($page < 1) {
-            throw new NotFoundHttpException();
+            throw $this->createNotFoundException();
         }
         $repository = $this->getDoctrine()->getRepository('AppBundle:NewsItem');
         $limit = 5;
@@ -30,6 +37,7 @@ class NewsController extends Controller
         $pageCount = ceil(count($newsItems) / $limit);
         return $this->render('news/list.html.twig', [
             'newsItems' => $newsItems,
+            'currentPage' => $page,
             'pageCount' => $pageCount,
         ]);
     }

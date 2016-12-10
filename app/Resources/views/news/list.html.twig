@@ -14,9 +14,25 @@
         </section>
     {% endfor %}
 
-    <nav class="pagination">
+    <ul class="pagination">
+        {% if currentPage == 1 %}
+            <li>«</li>
+        {% else %}
+            <li><a href="{{ path('newsList', { 'page': currentPage - 1 }) }}">«</a></li>
+        {% endif %}
+        
         {% for page in 1..pageCount %}
-            <a href="{{ path('newsList', { 'page': page }) }}">{{ page }}</a>
+            {% if page == currentPage %}
+                <li>{{ page }}</li>
+            {% else %}
+                <li><a href="{{ path('newsList', { 'page': page }) }}">{{ page }}</a></li>
+            {% endif %}
         {% endfor %}
-    </nav>
+        
+        {% if currentPage == pageCount %}
+            <li>»</li>
+        {% else %}
+            <li><a href="{{ path('newsList', { 'page': currentPage + 1 }) }}">»</a></li>
+        {% endif %}
+    </ul>
 {% endblock %}
