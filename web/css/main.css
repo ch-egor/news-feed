@@ -1,5 +1,6 @@
 body {
     font: 16px Arial, sans-serif;
+    line-height: 1.4;
 }
 
 h1 {
@@ -26,7 +27,7 @@ a:hover {
 }
 
 .news-item {
-    background-color: #f0f0f0;
+    background-color: #f9f9f9;
     border-radius: 8px;
     padding: 10px 15px;
     margin: 10px 0;
@@ -36,12 +37,64 @@ a:hover {
     color: black;
 }
 
-.pagination {
+ul.pagination {
     list-style-type: none;
     padding-left: 0;
 }
 
-.pagination li {
+ul.pagination > li {
     display: inline;
     font-size: 21px;
+}
+
+table.admin-news-list  {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+table.admin-news-list > tbody > tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table.admin-news-list th {
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+}
+
+table.admin-news-list td {
+    border-top: 1px solid #ddd;
+}
+
+table.admin-news-list th,
+table.admin-news-list td {
+    padding: 8px;
+}
+
+.button {
+    display: inline-block;
+    height: 30px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    background-color: white;
+    font: 14px Arial, sans-serif;
+    line-height: 1.4;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    text-decoration: none;
+}
+
+.button:hover:active {
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
 }

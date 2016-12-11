@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin News{% endblock %}
+
+{% block body %}
+    <table class="admin-news-list">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>URL Name</th>
+                <th>Preview</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for newsItem in newsItems %}
+                <tr>
+                    <td>{{ newsItem.title }}</td>
+                    <td>{{ newsItem.urlName }}</td>
+                    <td>{{ newsItem.preview|truncate(40) }}</td>
+                    <td>
+                        <a class="button"
+                           href="{{ path('adminViewNewsItem', { 'urlName': newsItem.urlName }) }}">
+                            View
+                        </a>
+                        <button type="button" class="button">Edit</button>
+                        <button type="button" class="button delete-button"
+                                data-url-name="{{ newsItem.urlName }}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+    <button type="button" class="button">New Entry</button>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".delete-button").on("click", function (event) {
+                if (!confirm("Are you sure?")) {
+                    return;
+                }
+                var $newsItemTr = $(this).closest("tr");
+                var newsItemUrlName = $(this).data("url-name");
+                var url = "{{ path('adminDeleteNewsItem', { 'urlName': '*urlName*' }) }}";
+                
+                $.ajax({
+                    url: url.replace("*urlName*", newsItemUrlName),
+                    method: "DELETE"
+                }).done(function (data, textStatus, jqXHR) {
+                    $newsItemTr.remove();
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("An error occurred: " + textStatus);
+                });
+            });
+        });
+    </script>
+{% endblock %}

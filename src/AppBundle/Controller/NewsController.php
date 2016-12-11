@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class NewsController extends Controller
 {

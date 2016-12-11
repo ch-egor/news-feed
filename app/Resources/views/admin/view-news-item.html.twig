@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ newsItem.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ newsItem.title }}</h1>
+    <p>{{ newsItem.content|raw }}</p>
+    
+    <p><a href="{{ path('adminNewsList') }}">Back to admin page</a></p>
+{% endblock %}
