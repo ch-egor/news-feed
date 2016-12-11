@@ -23,7 +23,10 @@
                            href="{{ path('adminViewNewsItem', { 'urlName': newsItem.urlName }) }}">
                             View
                         </a>
-                        <button type="button" class="button">Edit</button>
+                        <a class="button"
+                           href="{{ path('adminEditNewsItem', { 'urlName': newsItem.urlName }) }}">
+                            Edit
+                        </a>
                         <button type="button" class="button delete-button"
                                 data-url-name="{{ newsItem.urlName }}">
                             Delete
@@ -34,7 +37,7 @@
         </tbody>
     </table>
         
-    <button type="button" class="button">New Entry</button>
+    <a class="button" href="{{ path('adminAddNewsItem') }}">New Entry</a>
 {% endblock %}
 
 {% block javascripts %}

@@ -142,7 +142,7 @@ class NewsItem
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = strip_tags($content, '<h2><h3><p><br><b><i><u><ul><ol><li>');
 
         return $this;
     }

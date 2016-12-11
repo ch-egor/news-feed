@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit News Item{% endblock %}
+
+{% block body %}
+    {{ form_start(form, { 'attr': { 'class': 'edit-news-form' } }) }}
+
+    {{ form_label(form.title, 'Title') }}
+    {{ form_errors(form.title) }}
+    {{ form_widget(form.title) }}
+
+    {{ form_label(form.url_name, 'URL Name') }}
+    {{ form_errors(form.url_name) }}
+    {{ form_widget(form.url_name) }}
+    
+    {{ form_label(form.preview, 'Preview') }}
+    {{ form_errors(form.preview) }}
+    {{ form_widget(form.preview) }}
+    
+    {{ form_label(form.content, 'Content') }}
+    {{ form_errors(form.content) }}
+    {{ form_widget(form.content) }}
+
+    {{ form_widget(form.save, { 'attr': { 'class': 'button' } }) }}
+    {{ form_end(form) }}
+    
+    <p><a href="{{ path('adminNewsList') }}">Back to admin page</a></p>
+{% endblock %}
