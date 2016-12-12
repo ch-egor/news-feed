@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     font: 16px Arial, sans-serif;
     line-height: 1.4;
 }
@@ -34,9 +35,35 @@ hr {
   margin-bottom: 15px;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: black;
+}
+
+.navbar ul {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.navbar li {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.navbar a {
+    color: white;
+}
+
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 70px auto 0;
 }
 
 .right {
@@ -106,13 +133,14 @@ hr {
     color: black;
 }
 
-ul.pagination {
-    list-style-type: none;
+.pagination ul {
+    list-style: none;
     padding-left: 0;
 }
 
-ul.pagination > li {
+.pagination li {
     display: inline;
+    margin: 2px;
     font-size: 21px;
 }
 

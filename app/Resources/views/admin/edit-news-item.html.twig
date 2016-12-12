@@ -6,7 +6,7 @@
     <h1>Edit News Item</h1>
     <hr>
     
-    {{ form_start(form, { 'attr': { 'class': 'edit-news-form', 'novalidate': 'novalidate' } }) }}
+    {{ form_start(form, { 'attr': { 'class': 'edit-news-form' } }) }}
     <div class="form-item">
         {{ form_label(form.title, 'Title') }}
         {{ form_errors(form.title) }}

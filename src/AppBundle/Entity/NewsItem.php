@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -10,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="news_item")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NewsItemRepository")
+ * @UniqueEntity("urlName")
  */
 class NewsItem
 {
@@ -36,7 +38,7 @@ class NewsItem
      *
      * @ORM\Column(name="url_name", type="string", length=63, unique=true)
      * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\Regex("/^[\w-]+$/")
      */
     private $urlName;
 
@@ -151,6 +153,7 @@ class NewsItem
      */
     public function setContent($content)
     {
+        // TODO: use more reliable HTML sanitizer
         $this->content = strip_tags($content, '<h2><h3><p><br><b><i><u><ul><ol><li>');
 
         return $this;
