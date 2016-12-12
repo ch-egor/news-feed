@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,15 +22,11 @@ class NewsController extends Controller {
         if ($page < 1) {
             throw $this->createNotFoundException();
         }
-        $repository = $this->getDoctrine()->getRepository('AppBundle:NewsItem');
-        $limit = 5;
-        $query = $repository->createQueryBuilder('p')
-                ->getQuery()
-                ->setFirstResult($limit * ($page - 1))
-                ->setMaxResults($limit);
+        $newsItems = $this->getDoctrine()
+                ->getRepository('AppBundle:NewsItem')
+                ->findByPage($page, $newsPerPage = 5);
+        $pageCount = ceil(count($newsItems) / $newsPerPage);
 
-        $newsItems = new Paginator($query, $fetchJoinCollection = false);
-        $pageCount = ceil(count($newsItems) / $limit);
         return $this->render('news/list.html.twig', [
                     'newsItems' => $newsItems,
                     'currentPage' => $page,
@@ -43,8 +38,10 @@ class NewsController extends Controller {
      * @Route("/news/{urlName}", name="viewNewsItem")
      */
     public function viewItemAction($urlName) {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:NewsItem');
-        $newsItem = $repository->findOneByUrlName($urlName);
+        $newsItem = $this->getDoctrine()
+                ->getRepository('AppBundle:NewsItem')
+                ->findOneByUrlName($urlName);
+
         return $this->render('news/view-item.html.twig', [
                     'newsItem' => $newsItem,
         ]);

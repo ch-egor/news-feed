@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * NewsItem
@@ -25,6 +26,8 @@ class NewsItem
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=127)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $title;
 
@@ -32,6 +35,8 @@ class NewsItem
      * @var string
      *
      * @ORM\Column(name="url_name", type="string", length=63, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $urlName;
 
@@ -40,6 +45,8 @@ class NewsItem
      * @var string
      *
      * @ORM\Column(name="preview", type="string", length=1023)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $preview;
     
@@ -47,6 +54,8 @@ class NewsItem
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=65535)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $content;
 
