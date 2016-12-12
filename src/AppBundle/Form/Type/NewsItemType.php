@@ -14,7 +14,7 @@ class NewsItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class)
-                ->add('url_name', TextType::class)
+                ->add('urlName', TextType::class)
                 ->add('preview', TextareaType::class)
                 ->add('content', TextareaType::class)
                 ->add('save', SubmitType::class, [
